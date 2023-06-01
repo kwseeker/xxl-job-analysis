@@ -18,6 +18,7 @@ public class MyJobHandler {
 
     @XxlJob(value = "lifecycleJobHandler", init = "init", destroy = "destroy")
     public void handleLifecycleJob() {
+        System.out.println("handle LifecycleJob");
         XxlJobHelper.log("handle LifecycleJob");
     }
 

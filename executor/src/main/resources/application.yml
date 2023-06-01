@@ -1,19 +1,30 @@
+spring:
+  application:
+    name: xxl-job-analysis-executor
 server:
   port: 8082
 
 logging:
   config: classpath:logback.xml
+  level:
+    top.kwseeker.xxljob: debug
+    com.xxl.job: debug
 
 # xxl-job executor 配置
 xxl:
   job:
     admin:
-      addresses: http://127.0.0.1:8080/xxl-job-admin
+      addresses: http://127.0.0.1:58081/xxl-job-admin
     accessToken: default_token
     executor:
-      appName: kwseeker-executor
+      appName: xxl-job-analysis-executor
+      # 下面3项这么配置，将自动获取IP端口
+      #address:
+      #ip:
+      #port: 0
+      # 由于我的机器本地配置了多网卡（一个有线网卡、一个无线网卡、多个docker虚拟网卡）导致executor注册失败，所以这里需要手动指定ip地址
       address:
-      ip:
-      port: 10000
+      ip: 127.0.0.1
+      port: 59999
       logPath: /home/lee/mywork/java/xxl-job-analysis/log/jobHandler
       logRetentionDays: 30
